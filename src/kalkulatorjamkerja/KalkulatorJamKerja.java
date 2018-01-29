@@ -12,36 +12,24 @@ public class KalkulatorJamKerja {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {        
-        int y = 2018, m = 0, d = 3;
-        int yy = 2018, mm = 0;
-        int jlh_hari;
-        
-        Calendar cal = Calendar.getInstance();
-        cal.set(y, m, d);
-        //cal.set(yy, mm);
-        int day = cal.get(Calendar.DAY_OF_WEEK);
-        System.out.println(day);
-        
-//        int week = cal.get(Calendar.HOUR);
-//        System.out.println(week);
+    public static void main(String[] args) {
+        while (true) {
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Input tahun : ");
+            int yy = scan.nextInt();
+            System.out.print("Input bulan : ");
+            int mm = scan.nextInt();
 
-        int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        System.out.println(maxDay);
-        
-        int mon = cal.get(Calendar.FRIDAY);
-        System.out.println(mon);
-        
-        int tanggal = 1;
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Input bulan (0-11): ");
-        int bulan = scan.nextInt();
-        System.out.print("Input tahun: ");
-        int tahun = scan.nextInt();
-        
-        Calendar kalender = Calendar.getInstance();
-        kalender.set(tanggal, bulan, tahun);
+            CekHari jumlah_hari_kerja = new CekHari();
+            int jhk_SSRK = jumlah_hari_kerja.countSSRK(yy, mm);
+            int jhk_J = jumlah_hari_kerja.countJumat(yy, mm);
+            int jhk_S = jumlah_hari_kerja.countSabtu(yy, mm);
 
+            int jumlah_hk = jhk_SSRK + jhk_J + jhk_S;
+            System.out.println("Jumlah Hari Kerja pada bulan " + mm + " adalah " + jumlah_hk + " hari.");
+
+            HitungJamKerja hjk = new HitungJamKerja();
+            System.out.println("Jumlah Jam Kerja pada bulan " + mm + " adalah " + hjk.JumlahJamKerja() + " jam.");
+        }
     }
-
 }
