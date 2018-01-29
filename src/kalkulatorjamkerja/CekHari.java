@@ -3,11 +3,19 @@ package kalkulatorjamkerja;
 import java.util.Calendar;
 
 /**
- *
+ * Class Cek Hari dalam sebulan.
+ * Terdiri dari method cek hari senin-kamis, method cek hari jumat, dan cek hari sabtu.
  * @author YusufHA
  */
 public class CekHari {
 
+    /**
+     * Method penghitung jumlah hari (senin, selasa, rabu, kamis) dalam satu bulan.
+     * Lalu jumlah hari (senin, selasa, rabu, kamis) dikali jumlah jam kerja.
+     * @param year
+     * @param month
+     * @return 
+     */
     public int countSSRK(int year, int month) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
@@ -30,9 +38,16 @@ public class CekHari {
                 count++;
             }
         }
-        return count;
+        return count *6;
     }
     
+    /**
+     * Method penghitung jumlah hari (jumat) dalam satu bulan.
+     * Lalu jumlah hari (jumat) dikali jumlah jam kerja.
+     * @param year
+     * @param month
+     * @return 
+     */
     public int countJumat(int year, int month){
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
@@ -46,9 +61,16 @@ public class CekHari {
                 count++;
             }
         }
-        return count;
+        return count *5;
     }
     
+    /**
+     * Method penghitung jumlah hari (sabtu) dalam satu bulan.
+     * Lalu jumlah hari (sabtu) dikali jumlah jam kerja. 
+     * @param year
+     * @param month
+     * @return 
+     */
     public int countSabtu(int year, int month){
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
@@ -62,6 +84,6 @@ public class CekHari {
                 count++;
             }
         }
-        return count;
+        return count *3;
     }
 }
