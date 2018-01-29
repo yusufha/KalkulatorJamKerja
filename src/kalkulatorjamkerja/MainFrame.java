@@ -16,7 +16,12 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
     }
-     public void FilterHanyaAngka(java.awt.event.KeyEvent evt) {
+    
+    /**
+     * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
+     * @param evt 
+     */
+    public void FilterHanyaAngka(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
         if (!((Character.isDigit(c)
                 || (c == KeyEvent.VK_BACK_SPACE)
@@ -24,7 +29,12 @@ public class MainFrame extends javax.swing.JFrame {
             evt.consume();
         }
     }
-     public void FilterNol(java.awt.event.KeyEvent evt){
+    
+    /**
+     * Method validasi textBox bulan : Tidak boleh diisi angka '0' & Tidak boleh diisi angka '>12'.
+     * @param evt 
+     */
+    public void FilterNol(java.awt.event.KeyEvent evt){
       int bulan = Integer.parseInt(txtBulan.getText());
 
         if (bulan <= 0) {
@@ -82,6 +92,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnHitung.setText("HITUNG");
+        btnHitung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHitungActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Jumlah Hari Kerja");
 
@@ -147,7 +162,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBulanKeyTyped
 
     private void txtTahunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyTyped
-        // TODO add your handling code here:
+        // TODO add your handling code here
         FilterHanyaAngka(evt);
     }//GEN-LAST:event_txtTahunKeyTyped
 
@@ -155,6 +170,26 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         FilterNol(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
+
+    /**
+     * Method Action Button Hitung.
+     * Memanggil method dari class CekHari, lalu menghitung jumlah jam keseluruhan dalam satu bulan tertentu.
+     * @param evt 
+     */
+    private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
+        // TODO add your handling code here:
+        int mm = Integer.parseInt(txtBulan.getText());
+        int yy = Integer.parseInt(txtTahun.getText());
+        
+        CekHari ch = new CekHari();
+        int jjk_SSRK = ch.countSSRK(yy, mm);
+        int jjk_J = ch.countJumat(yy, mm);
+        int jjk_S = ch.countSabtu(yy, mm);
+        
+        int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
+        
+        txtJumlah.setText(Integer.toString(jumlah_jk));
+    }//GEN-LAST:event_btnHitungActionPerformed
 
     /**
      * @param args the command line arguments
