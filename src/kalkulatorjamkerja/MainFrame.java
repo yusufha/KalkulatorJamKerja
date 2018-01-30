@@ -2,7 +2,12 @@
 package kalkulatorjamkerja;
 
 import java.awt.event.KeyEvent;
+import java.time.Year;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 /**
  *
@@ -46,8 +51,15 @@ public class MainFrame extends javax.swing.JFrame {
         }else{
         
         }
-     
      }
+    
+    public void BatasTahun(java.awt.event.KeyEvent evt){
+      if(txtTahun.getText().length()>4){
+          JOptionPane.showMessageDialog(this, "Tahun Terlalu Banyak Dap");
+          evt.consume();
+      }
+     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,8 +124,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTahunKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTahunKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTahunKeyTyped(evt);
