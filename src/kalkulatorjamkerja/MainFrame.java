@@ -20,7 +20,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        txtTahun.setEnabled(false);
     }
+    
     
     /**
      * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
@@ -124,8 +126,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTahunKeyReleased(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTahunKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTahunKeyTyped(evt);
@@ -221,6 +223,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void txtBulanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyTyped
         // TODO add your handling code here:
         FilterHanyaAngka(evt);
+        txtTahun.setEnabled(true);
     }//GEN-LAST:event_txtBulanKeyTyped
 
     private void txtBulanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyReleased
@@ -230,13 +233,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void txtTahunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyPressed
         // TODO add your handling code here:
-
         int key = evt.getKeyCode();
 
         /* Restrict input to only integers */
-        if (key > 1970 && key < 2500) {
-            evt.setKeyChar(' ');
-            }
+//        if (key > 1970 && key < 2500) {
+//            evt.
     }//GEN-LAST:event_txtTahunKeyPressed
 
     /**
@@ -266,6 +267,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+    
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
