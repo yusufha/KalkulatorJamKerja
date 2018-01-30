@@ -22,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
     }
     
+    // <editor-fold defaultstate="collapsed" desc="Method Validasi">
     /**
      * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
      * @param evt 
@@ -53,13 +54,17 @@ public class MainFrame extends javax.swing.JFrame {
         }
      }
     
+    /**
+     * method validasi jumlah karakter pada tahun harus 4 digit
+     * @param evt 
+     */
     public void BatasTahun(java.awt.event.KeyEvent evt){
       if(txtTahun.getText().length()>4){
           JOptionPane.showMessageDialog(this, "Tahun Terlalu Banyak Dap");
           evt.consume();
       }
      }
-    
+    // </editor-fold>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,6 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hitung Jam Kerja");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
