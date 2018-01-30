@@ -2,7 +2,12 @@
 package kalkulatorjamkerja;
 
 import java.awt.event.KeyEvent;
+import java.time.Year;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 /**
  *
@@ -46,8 +51,15 @@ public class MainFrame extends javax.swing.JFrame {
         }else{
         
         }
-     
      }
+    
+    public void BatasTahun(java.awt.event.KeyEvent evt){
+      if(txtTahun.getText().length()>4){
+          JOptionPane.showMessageDialog(this, "Tahun Terlalu Banyak Dap");
+          evt.consume();
+      }
+     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,6 +124,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTahunKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTahunKeyTyped(evt);
             }
@@ -212,6 +227,12 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         FilterNol(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
+
+    private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
+        // TODO add your handling code here:
+        BatasTahun(evt);
+    
+    }//GEN-LAST:event_txtTahunKeyReleased
 
     /**
      * @param args the command line arguments
