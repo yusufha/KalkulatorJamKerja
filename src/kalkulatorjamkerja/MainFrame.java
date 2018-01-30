@@ -87,6 +87,14 @@ public class MainFrame extends javax.swing.JFrame {
                 txtBulanActionPerformed(evt);
             }
         });
+        txtBulan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBulanKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBulanKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtBulan, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 34, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -194,6 +202,16 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtTahun.setText("");
     }//GEN-LAST:event_txtTahunFocusGained
+
+    private void txtBulanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyTyped
+        // TODO add your handling code here:
+        FilterHanyaAngka(evt);
+    }//GEN-LAST:event_txtBulanKeyTyped
+
+    private void txtBulanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyReleased
+        // TODO add your handling code here:
+        FilterNol(evt);
+    }//GEN-LAST:event_txtBulanKeyReleased
 
     /**
      * @param args the command line arguments
