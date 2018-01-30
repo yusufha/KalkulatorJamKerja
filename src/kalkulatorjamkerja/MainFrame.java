@@ -23,7 +23,7 @@ public class MainFrame extends javax.swing.JFrame {
         txtTahun.setEnabled(false);
     }
     
-    
+    // <editor-fold defaultstate="collapsed" desc="Method Validasi">
     /**
      * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
      * @param evt 
@@ -55,13 +55,17 @@ public class MainFrame extends javax.swing.JFrame {
         }
      }
     
+    /**
+     * method validasi jumlah karakter pada tahun harus 4 digit
+     * @param evt 
+     */
     public void BatasTahun(java.awt.event.KeyEvent evt){
       if(txtTahun.getText().length()>4){
           JOptionPane.showMessageDialog(this, "Tahun Terlalu Banyak Dap");
           evt.consume();
       }
      }
-    
+    // </editor-fold>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,6 +87,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hitung Jam Kerja");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -233,12 +238,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void txtTahunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyPressed
         // TODO add your handling code here:
-        int key = evt.getKeyCode();
-
-        /* Restrict input to only integers */
-//        if (key > 1970 && key < 2500) {
-//            evt.
     }//GEN-LAST:event_txtTahunKeyPressed
+
+    private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
+        // TODO add your handling code here:
+        BatasTahun(evt);
+    }//GEN-LAST:event_txtTahunKeyReleased
 
     /**
      * @param args the command line arguments
