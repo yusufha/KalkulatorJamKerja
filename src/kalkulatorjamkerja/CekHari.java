@@ -12,8 +12,8 @@ public class CekHari {
     /**
      * Method penghitung jumlah hari (senin, selasa, rabu, kamis) dalam satu bulan.
      * Lalu jumlah hari (senin, selasa, rabu, kamis) dikali jumlah jam kerja.
-     * @param year
-     * @param month
+     * @param year type: int | berisi inputan tahun
+     * @param month type: int | berisi inputan bulan
      * @return 
      */
     public int countSSRK(int year, int month) {
@@ -44,8 +44,8 @@ public class CekHari {
     /**
      * Method penghitung jumlah hari (jumat) dalam satu bulan.
      * Lalu jumlah hari (jumat) dikali jumlah jam kerja.
-     * @param year
-     * @param month
+     * @param year type: int | berisi inputan tahun
+     * @param month type: int | berisi inputan bulan
      * @return 
      */
     public int countJumat(int year, int month){
@@ -67,8 +67,8 @@ public class CekHari {
     /**
      * Method penghitung jumlah hari (sabtu) dalam satu bulan.
      * Lalu jumlah hari (sabtu) dikali jumlah jam kerja. 
-     * @param year
-     * @param month
+     * @param year type: int | berisi inputan tahun
+     * @param month type: int | berisi inputan bulan
      * @return 
      */
     public int countSabtu(int year, int month){

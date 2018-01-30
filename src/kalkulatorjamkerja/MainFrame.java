@@ -112,6 +112,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTahunKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTahunKeyTyped(evt);
             }
@@ -213,6 +216,17 @@ public class MainFrame extends javax.swing.JFrame {
         FilterNol(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
 
+    private void txtTahunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyPressed
+        // TODO add your handling code here:
+
+        int key = evt.getKeyCode();
+
+        /* Restrict input to only integers */
+        if (key > 1970 && key < 2500) {
+            evt.setKeyChar(' ');
+            }
+    }//GEN-LAST:event_txtTahunKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
