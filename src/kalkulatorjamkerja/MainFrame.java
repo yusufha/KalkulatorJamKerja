@@ -130,6 +130,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTahunKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTahunKeyReleased(evt);
             }
@@ -237,13 +240,18 @@ public class MainFrame extends javax.swing.JFrame {
     private void txtTahunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyPressed
         // TODO add your handling code here:
 
-        int key = evt.getKeyCode();
-
-        /* Restrict input to only integers */
-        if (key > 1970 && key < 2500) {
-            evt.setKeyChar(' ');
-            }
+//        int key = evt.getKeyCode();
+//
+//        /* Restrict input to only integers */
+//        if (key > 1970 && key < 2500) {
+//            evt.setKeyChar(' ');
+//            }
     }//GEN-LAST:event_txtTahunKeyPressed
+
+    private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
+        // TODO add your handling code here:
+        BatasTahun(evt);
+    }//GEN-LAST:event_txtTahunKeyReleased
 
     /**
      * @param args the command line arguments
