@@ -62,8 +62,9 @@ public class MainFrame extends javax.swing.JFrame {
      * Method validasi textBox bulan : Tidak boleh diisi angka '0' & Tidak boleh diisi angka '>12'.
      * @param evt 
      */
-    public void FilterNolBulan(java.awt.event.KeyEvent evt){
+    public void FilterNolBulan(KeyEvent evt){
         int bulan = Integer.parseInt(txtBulan.getText());
+        
         if (bulan <= 0) {
             JOptionPane.showMessageDialog(null, "Bulan Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
             txtBulan.setText("");
