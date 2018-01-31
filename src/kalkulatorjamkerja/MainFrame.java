@@ -59,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
      * @param evt 
      */
     public void BatasTahun(java.awt.event.KeyEvent evt){
-      if(txtTahun.getText().length()>4){
+      if(txtTahun.getText().length()==5){
           JOptionPane.showMessageDialog(this, "Tahun Terlalu Banyak Dap");
           evt.consume();
       }
@@ -214,6 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtBulan.setText("ex:2");
         txtTahun.setText("ex:2018");
+        txtJumlah.setText("");
         lblBack.requestFocus();
     }//GEN-LAST:event_lblBackMouseClicked
 
