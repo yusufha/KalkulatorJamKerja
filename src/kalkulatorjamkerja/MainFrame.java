@@ -1,6 +1,7 @@
 
 package kalkulatorjamkerja;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.time.Year;
 import javax.swing.InputVerifier;
@@ -16,7 +17,7 @@ import javax.swing.text.PlainDocument;
  */
 
 public class MainFrame extends javax.swing.JFrame {
-
+    
 
     public MainFrame() {
         initComponents();
@@ -42,6 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tahun Harus Terdiri dari 4 digit angka.");
             
         }
+        FilterNolTahun(evt);
     }
     /**
      * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
@@ -72,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
      }
     
-    public void FilterNolTahun(java.awt.event.KeyEvent evt){
+    public void FilterNolTahun(ActionEvent evt){
         int tahun = Integer.parseInt(txtTahun.getText());
 
         if (tahun <= 0) {
@@ -208,7 +210,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTahunActionPerformed
 
     private void txtBulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBulanActionPerformed
-       // txtTahun.requestFocus();
+        txtTahun.requestFocus();
     }//GEN-LAST:event_txtBulanActionPerformed
 
     private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
@@ -236,7 +238,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBulanKeyReleased
 
     private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
-        FilterNolTahun(evt);
+//        FilterNolTahun(evt);
     }//GEN-LAST:event_txtTahunKeyReleased
 
     /**
