@@ -43,7 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Method validasi textBox bulan : Tidak boleh diisi angka '0' & Tidak boleh diisi angka '>12'.
      * @param evt 
      */
-    public void FilterNol(java.awt.event.KeyEvent evt){
+    public void FilterNolBulan(java.awt.event.KeyEvent evt){
       int bulan = Integer.parseInt(txtBulan.getText());
 
         if (bulan <= 0) {
@@ -56,12 +56,21 @@ public class MainFrame extends javax.swing.JFrame {
         }
      }
     
+    public void FilterNolTahun(java.awt.event.KeyEvent evt){
+      int tahun = Integer.parseInt(txtTahun.getText());
+
+        if (tahun <= 0) {
+            JOptionPane.showMessageDialog(null, "Tahun Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            txtTahun.setText("");
+        }else{
+        }
+    }
     /**
      * method validasi jumlah karakter pada tahun harus 4 digit
      * @param evt 
      */
     public void BatasTahun(java.awt.event.KeyEvent evt){
-      if(txtTahun.getText().length()>4){
+      if(txtTahun.getText().length()> 4){
           JOptionPane.showMessageDialog(this, "Tahun Terlalu Banyak Dap");
           evt.consume();
       }
@@ -133,6 +142,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTahunKeyReleased(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTahunKeyReleased(evt);
             }
@@ -215,6 +227,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
         txtBulan.setText("ex:2");
         txtTahun.setText("ex:2018");
+        txtJumlah.setText("");
         lblBack.requestFocus();
     }//GEN-LAST:event_lblBackMouseClicked
 
@@ -232,10 +245,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBulanKeyTyped
 
     private void txtBulanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyReleased
-        FilterNol(evt);
+        // TODO add your handling code here:
+        FilterNolBulan(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
 
     private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
+        // TODO add your handling code here:
+        FilterNolTahun(evt);
         BatasTahun(evt);
     }//GEN-LAST:event_txtTahunKeyReleased
 
