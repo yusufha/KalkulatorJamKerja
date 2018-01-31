@@ -3,6 +3,7 @@ package kalkulatorjamkerja;
 
 import java.awt.event.KeyEvent;
 import java.time.Year;
+import javax.swing.InputVerifier;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
@@ -13,6 +14,7 @@ import javax.swing.text.PlainDocument;
  *
  * @author YusufHA
  */
+
 public class MainFrame extends javax.swing.JFrame {
 
     /**
@@ -47,11 +49,10 @@ public class MainFrame extends javax.swing.JFrame {
         if (bulan <= 0) {
             JOptionPane.showMessageDialog(null, "Bulan Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
             txtBulan.setText("");
-        } else if (bulan > 12){
+        } 
+        if (bulan > 12){
             JOptionPane.showMessageDialog(null, "Bulan Tidak Ada....", "Warning", JOptionPane.INFORMATION_MESSAGE);
             txtBulan.setText("");
-        }else{
-        
         }
      }
     
@@ -64,7 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(this, "Tahun Terlalu Banyak Dap");
           evt.consume();
       }
-     }
+    }
     // </editor-fold>
 
     /**
@@ -120,6 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setText("Tahun");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, 30));
 
+        txtTahun.setToolTipText("<html>\n <input type=\"text\"  maxlength=\"4\" minlength=\"4\">\n</html>");
         txtTahun.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtTahunFocusGained(evt);
@@ -131,8 +133,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTahunKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTahunKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTahunKeyTyped(evt);
@@ -174,7 +176,6 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTahunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyTyped
-        // TODO add your handling code here
         FilterHanyaAngka(evt);
     }//GEN-LAST:event_txtTahunKeyTyped
 
@@ -184,7 +185,6 @@ public class MainFrame extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
-        // TODO add your handling code here:
         int mm = Integer.parseInt(txtBulan.getText());
         int yy = Integer.parseInt(txtTahun.getText());
         
@@ -193,55 +193,49 @@ public class MainFrame extends javax.swing.JFrame {
         int jjk_J = ch.countJumat(yy, mm);
         int jjk_S = ch.countSabtu(yy, mm);
         
-        int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
+        if (txtTahun.getText().length() == 4){
+            int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
+            txtJumlah.setText(Integer.toString(jumlah_jk));
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Tahun Harus Terdiri dari 4 digit angka.");
+            
+        }
         
-        txtJumlah.setText(Integer.toString(jumlah_jk));
     }//GEN-LAST:event_btnHitungActionPerformed
 
     private void txtTahunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTahunActionPerformed
-        // TODO add your handling code here:
         btnHitungActionPerformed(evt);
     }//GEN-LAST:event_txtTahunActionPerformed
 
     private void txtBulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBulanActionPerformed
-        // TODO add your handling code here:
         txtTahun.requestFocus();
     }//GEN-LAST:event_txtBulanActionPerformed
 
     private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
-        // TODO add your handling code here:
         txtBulan.setText("ex:2");
         txtTahun.setText("ex:2018");
         lblBack.requestFocus();
     }//GEN-LAST:event_lblBackMouseClicked
 
     private void txtBulanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBulanFocusGained
-        // TODO add your handling code here:
         txtBulan.setText("");
     }//GEN-LAST:event_txtBulanFocusGained
 
     private void txtTahunFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTahunFocusGained
-        // TODO add your handling code here:
         txtTahun.setText("");
     }//GEN-LAST:event_txtTahunFocusGained
 
     private void txtBulanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyTyped
-        // TODO add your handling code here:
         FilterHanyaAngka(evt);
         txtTahun.setEnabled(true);
     }//GEN-LAST:event_txtBulanKeyTyped
 
     private void txtBulanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyReleased
-        // TODO add your handling code here:
         FilterNol(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
 
-    private void txtTahunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTahunKeyPressed
-
     private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
-        // TODO add your handling code here:
         BatasTahun(evt);
     }//GEN-LAST:event_txtTahunKeyReleased
 
