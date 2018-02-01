@@ -1,5 +1,4 @@
 package kalkulatorjamkerja;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.time.Year;
@@ -19,14 +18,13 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         txtTahun.setEnabled(false);
-
     }
     Date d = new Date();
 
     // <editor-fold defaultstate="collapsed" desc="Method Validasi">
     /**
-     * Method Action Button Hitung. Memanggil method dari class CekHari Lalu
-     * menghitung jumlah jam keseluruhan dalam satu bulan tertentu.
+     * Method Action Button Hitung. Memanggil method dari class CekHari 
+     * Lalu menghitung jumlah jam keseluruhan dalam satu bulan tertentu.
      *
      * @param evt
      */
@@ -40,17 +38,9 @@ public class MainFrame extends javax.swing.JFrame {
             int jjk_J = ch.countJumat(yy, mm);
             int jjk_S = ch.countSabtu(yy, mm);
 
-            if (txtTahun.getText().length() == 4) {
-                if (d.validasiTahun(yy)) {
-                    int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
-                    txtJumlah.setText(Integer.toString(jumlah_jk));
-                } else {
-                    JOptionPane.showMessageDialog(this,
-                            "Input Tahun Minimal 1970");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Tahun Harus Terdiri dari 4 digit angka.");
+            if (d.validasiTahun(yy)) {
+                int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
+                txtJumlah.setText(Integer.toString(jumlah_jk));
             }
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
@@ -61,7 +51,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     /**
      * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
-     *
      * @param evt
      */
     public void FilterHanyaAngka(java.awt.event.KeyEvent evt) {
@@ -74,9 +63,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     /**
-     * Method validasi textBox bulan : Tidak boleh diisi angka '0' & Tidak boleh
-     * diisi angka '>12'.
-     *
+     * Method validasi textBox bulan : Harus diisikan angka 1-12
      * @param evt
      */
     public void FilterNolBulan(KeyEvent evt) {
@@ -90,18 +77,6 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }
-//    /**
-//     * Method validasi textBox tahun : Tidak boleh diisi angka 0
-//     * @param evt 
-//     */
-//    public void FilterNolTahun(ActionEvent evt){
-//        int tahun = Integer.parseInt(txtTahun.getText());
-//
-//        if (tahun <= 0) {
-//            JOptionPane.showMessageDialog(null, "Tahun Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
-//            txtTahun.setText("");
-//        }
-//    }
 
     // </editor-fold>
     /**

@@ -3,7 +3,7 @@ package kalkulatorjamkerja;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Berisi method validasi tahun dan bulan
  * @author YusufHA
  */
 public class Date {
@@ -28,14 +28,13 @@ public class Date {
             JOptionPane.showMessageDialog(null, 
                     "Input Tahun Salah");
             throw new CustomException("Input Tahun Salah");
-            
         }
         return true;
     }
     
     /**
      * Method validasi bulan
-     * Tahun tidak boleh lebih kecil dari 1970 dan lebih besar 9999
+     * Inputan Bulan harus 1-12
      * @param bln
      * @return
      * @throws CustomException 
