@@ -1,4 +1,5 @@
 package kalkulatorjamkerja;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.time.Year;
@@ -13,46 +14,55 @@ import javax.swing.text.PlainDocument;
  *
  * @author YusufHA
  */
-
 public class MainFrame extends javax.swing.JFrame {
-    
 
     public MainFrame() {
         initComponents();
         txtTahun.setEnabled(false);
+
     }
-    
+    Date d = new Date();
+
     // <editor-fold defaultstate="collapsed" desc="Method Validasi">
     /**
-     * Method Action Button Hitung.
-     * Memanggil method dari class CekHari
-     * Lalu menghitung jumlah jam keseluruhan dalam satu bulan tertentu.
-     * @param evt 
+     * Method Action Button Hitung. Memanggil method dari class CekHari Lalu
+     * menghitung jumlah jam keseluruhan dalam satu bulan tertentu.
+     *
+     * @param evt
      */
-    public void Hitung(java.awt.event.ActionEvent evt){
-        int mm = Integer.parseInt(txtBulan.getText());
-        int yy = Integer.parseInt(txtTahun.getText());
-        
-        CekHari ch = new CekHari();
-        int jjk_SSRK = ch.countSSRK(yy, mm);
-        int jjk_J = ch.countJumat(yy, mm);
-        int jjk_S = ch.countSabtu(yy, mm);
-        
-        if (txtTahun.getText().length() == 4) {
-            if (yy > 1969) {
-                int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
-                txtJumlah.setText(Integer.toString(jumlah_jk)); }
-            else {
-                JOptionPane.showMessageDialog(this, 
-                    "Input Tahun Minimal 1970"); }}
-        else {
-            JOptionPane.showMessageDialog(this, 
-                    "Tahun Harus Terdiri dari 4 digit angka."); }
-      //  FilterNolTahun(evt);
+    public void Hitung(java.awt.event.ActionEvent evt) {
+        try {
+            int mm = Integer.parseInt(txtBulan.getText());
+            int yy = Integer.parseInt(txtTahun.getText());
+
+            CekHari ch = new CekHari();
+            int jjk_SSRK = ch.countSSRK(yy, mm);
+            int jjk_J = ch.countJumat(yy, mm);
+            int jjk_S = ch.countSabtu(yy, mm);
+
+            if (txtTahun.getText().length() == 4) {
+                if (d.validasiTahun(yy)) {
+                    int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
+                    txtJumlah.setText(Integer.toString(jumlah_jk));
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Input Tahun Minimal 1970");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Tahun Harus Terdiri dari 4 digit angka.");
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println(ex.getMessage());
+        } catch (CustomException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+
     /**
      * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
-     * @param evt 
+     *
+     * @param evt
      */
     public void FilterHanyaAngka(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
@@ -62,23 +72,24 @@ public class MainFrame extends javax.swing.JFrame {
             evt.consume();
         }
     }
-    
+
     /**
-     * Method validasi textBox bulan : Tidak boleh diisi angka '0' & Tidak boleh diisi angka '>12'.
-     * @param evt 
+     * Method validasi textBox bulan : Tidak boleh diisi angka '0' & Tidak boleh
+     * diisi angka '>12'.
+     *
+     * @param evt
      */
-    public void FilterNolBulan(KeyEvent evt){
+    public void FilterNolBulan(KeyEvent evt) {
+
         int bulan = Integer.parseInt(txtBulan.getText());
-        
-        if (bulan <= 0) {
-            JOptionPane.showMessageDialog(null, "Bulan Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
-            txtBulan.setText("");
-        } 
-        if (bulan > 12){
-            JOptionPane.showMessageDialog(null, "Bulan Tidak Ada....", "Warning", JOptionPane.INFORMATION_MESSAGE);
-            txtBulan.setText("");
+        try {
+            d.validasiBulan(bulan);
+        } catch (NumberFormatException ex) {
+            System.out.println(ex.getMessage());
+        } catch (CustomException ex) {
+            System.out.println(ex.getMessage());
         }
-     }
+    }
 //    /**
 //     * Method validasi textBox tahun : Tidak boleh diisi angka 0
 //     * @param evt 
@@ -91,9 +102,8 @@ public class MainFrame extends javax.swing.JFrame {
 //            txtTahun.setText("");
 //        }
 //    }
-    
-    // </editor-fold>
 
+    // </editor-fold>
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,9 +144,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtBulan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBulanKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBulanKeyReleased(evt);
             }
@@ -241,10 +248,6 @@ public class MainFrame extends javax.swing.JFrame {
         FilterNolBulan(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
 
-    private void txtBulanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyPressed
-        FilterNolBulan(evt);
-    }//GEN-LAST:event_txtBulanKeyPressed
-
     /**
      * @param args the command line arguments
      */
@@ -272,14 +275,13 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-    
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
