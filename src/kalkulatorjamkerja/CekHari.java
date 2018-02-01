@@ -10,7 +10,7 @@ import java.util.Calendar;
 public class CekHari {
 
     /**
-     * Method penghitung jumlah hari (senin, selasa, rabu, kamis) dalam satu bulan.
+     * Menghitung jumlah hari (senin, selasa, rabu, kamis) selama sebulan.
      * Lalu jumlah hari (senin, selasa, rabu, kamis) dikali jumlah jam kerja.
      * @param year type: int | berisi inputan tahun
      * @param month type: int | berisi inputan bulan
@@ -25,18 +25,10 @@ public class CekHari {
         for (int day = 1; day <= daysInMonth; day++) {
             calendar.set(year, month - 1, day);
             int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-            if (dayOfWeek == Calendar.MONDAY) {
-                count++;
-            }
-            if (dayOfWeek == Calendar.TUESDAY) {
-                count++;
-            }
-            if (dayOfWeek == Calendar.WEDNESDAY) {
-                count++;
-            }
-            if (dayOfWeek == Calendar.THURSDAY) {
-                count++;
-            }
+            if (dayOfWeek == Calendar.MONDAY) count++;
+            if (dayOfWeek == Calendar.TUESDAY) count++;
+            if (dayOfWeek == Calendar.WEDNESDAY) count++;
+            if (dayOfWeek == Calendar.THURSDAY) count++;
         }
         return count *6;
     }
@@ -57,9 +49,7 @@ public class CekHari {
         for (int day = 1; day <= daysInMonth; day++){
             calendar.set(year, month - 1, day);
             int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-            if (dayOfWeek == Calendar.FRIDAY){
-                count++;
-            }
+            if (dayOfWeek == Calendar.FRIDAY) count++;
         }
         return count *5;
     }
@@ -80,9 +70,7 @@ public class CekHari {
         for (int day = 1; day <= daysInMonth; day++){
             calendar.set(year, month - 1, day);
             int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-            if (dayOfWeek == Calendar.SATURDAY){
-                count++;
-            }
+            if (dayOfWeek == Calendar.SATURDAY) count++;
         }
         return count *3;
     }

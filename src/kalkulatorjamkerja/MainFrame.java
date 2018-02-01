@@ -1,6 +1,4 @@
-
 package kalkulatorjamkerja;
-
 import java.awt.event.KeyEvent;
 import java.time.Year;
 import javax.swing.InputVerifier;
@@ -39,8 +37,8 @@ public class MainFrame extends javax.swing.JFrame {
             txtJumlah.setText(Integer.toString(jumlah_jk));
         }
         else {
-            JOptionPane.showMessageDialog(this, "Tahun Harus Terdiri dari 4 digit angka.");
-            
+            JOptionPane.showMessageDialog(this, 
+                    "Tahun Harus Terdiri dari 4 digit angka.");
         }
     }
     /**
@@ -228,11 +226,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void txtBulanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyTyped
         FilterHanyaAngka(evt);
+        FilterNolBulan(evt);
         txtTahun.setEnabled(true);
     }//GEN-LAST:event_txtBulanKeyTyped
 
     private void txtBulanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyReleased
-        FilterNolBulan(evt);
+       // FilterNolBulan(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
 
     private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
