@@ -1,4 +1,5 @@
 package kalkulatorjamkerja;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.time.Year;
 import javax.swing.InputVerifier;
@@ -14,7 +15,7 @@ import javax.swing.text.PlainDocument;
  */
 
 public class MainFrame extends javax.swing.JFrame {
-
+    
 
     public MainFrame() {
         initComponents();
@@ -22,7 +23,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // <editor-fold defaultstate="collapsed" desc="Method Validasi">
-    
+    /**
+     * Method Action Button Hitung.
+     * Memanggil method dari class CekHari
+     * Lalu menghitung jumlah jam keseluruhan dalam satu bulan tertentu.
+     * @param evt 
+     */
     public void Hitung(java.awt.event.ActionEvent evt){
         int mm = Integer.parseInt(txtBulan.getText());
         int yy = Integer.parseInt(txtTahun.getText());
@@ -32,14 +38,17 @@ public class MainFrame extends javax.swing.JFrame {
         int jjk_J = ch.countJumat(yy, mm);
         int jjk_S = ch.countSabtu(yy, mm);
         
-        if (txtTahun.getText().length() == 4){
-            int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
-            txtJumlah.setText(Integer.toString(jumlah_jk));
-        }
+        if (txtTahun.getText().length() == 4) {
+            if (yy > 1969) {
+                int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
+                txtJumlah.setText(Integer.toString(jumlah_jk)); }
+            else {
+                JOptionPane.showMessageDialog(this, 
+                    "Input Tahun Minimal 1970"); }}
         else {
             JOptionPane.showMessageDialog(this, 
-                    "Tahun Harus Terdiri dari 4 digit angka.");
-        }
+                    "Tahun Harus Terdiri dari 4 digit angka."); }
+      //  FilterNolTahun(evt);
     }
     /**
      * Method validasi textBox bulan dan tahun : hanya dapat diisi angka.
@@ -58,8 +67,9 @@ public class MainFrame extends javax.swing.JFrame {
      * Method validasi textBox bulan : Tidak boleh diisi angka '0' & Tidak boleh diisi angka '>12'.
      * @param evt 
      */
-    public void FilterNolBulan(java.awt.event.KeyEvent evt){
+    public void FilterNolBulan(KeyEvent evt){
         int bulan = Integer.parseInt(txtBulan.getText());
+        
         if (bulan <= 0) {
             JOptionPane.showMessageDialog(null, "Bulan Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
             txtBulan.setText("");
@@ -69,15 +79,18 @@ public class MainFrame extends javax.swing.JFrame {
             txtBulan.setText("");
         }
      }
-    
-    public void FilterNolTahun(java.awt.event.KeyEvent evt){
-        int tahun = Integer.parseInt(txtTahun.getText());
-
-        if (tahun <= 0) {
-            JOptionPane.showMessageDialog(null, "Tahun Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
-            txtTahun.setText("");
-        }
-    }
+//    /**
+//     * Method validasi textBox tahun : Tidak boleh diisi angka 0
+//     * @param evt 
+//     */
+//    public void FilterNolTahun(ActionEvent evt){
+//        int tahun = Integer.parseInt(txtTahun.getText());
+//
+//        if (tahun <= 0) {
+//            JOptionPane.showMessageDialog(null, "Tahun Tidak Boleh 0....", "Warning", JOptionPane.INFORMATION_MESSAGE);
+//            txtTahun.setText("");
+//        }
+//    }
     
     // </editor-fold>
 
@@ -121,6 +134,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtBulan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBulanKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBulanKeyReleased(evt);
             }
@@ -146,9 +162,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTahunKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTahunKeyTyped(evt);
             }
@@ -192,11 +205,6 @@ public class MainFrame extends javax.swing.JFrame {
         FilterHanyaAngka(evt);
     }//GEN-LAST:event_txtTahunKeyTyped
 
-    /**
-     * Method Action Button Hitung.
-     * Memanggil method dari class CekHari, lalu menghitung jumlah jam keseluruhan dalam satu bulan tertentu.
-     * @param evt 
-     */
     private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
         Hitung(evt);
     }//GEN-LAST:event_btnHitungActionPerformed
@@ -206,7 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTahunActionPerformed
 
     private void txtBulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBulanActionPerformed
-       // txtTahun.requestFocus();
+        txtTahun.requestFocus();
     }//GEN-LAST:event_txtBulanActionPerformed
 
     private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
@@ -226,17 +234,16 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void txtBulanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyTyped
         FilterHanyaAngka(evt);
-        FilterNolBulan(evt);
         txtTahun.setEnabled(true);
     }//GEN-LAST:event_txtBulanKeyTyped
 
     private void txtBulanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyReleased
-       // FilterNolBulan(evt);
+        FilterNolBulan(evt);
     }//GEN-LAST:event_txtBulanKeyReleased
 
-    private void txtTahunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyReleased
-        FilterNolTahun(evt);
-    }//GEN-LAST:event_txtTahunKeyReleased
+    private void txtBulanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBulanKeyPressed
+        FilterNolBulan(evt);
+    }//GEN-LAST:event_txtBulanKeyPressed
 
     /**
      * @param args the command line arguments
