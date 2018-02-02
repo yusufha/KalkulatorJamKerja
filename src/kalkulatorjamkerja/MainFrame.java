@@ -19,7 +19,6 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         txtTahun.setEnabled(false);
     }
-    Date d = new Date();
 
     // <editor-fold defaultstate="collapsed" desc="Method Validasi">
     /**
@@ -28,19 +27,16 @@ public class MainFrame extends javax.swing.JFrame {
      *
      * @param evt
      */
+    Date d = new Date();
+    
     public void Hitung(java.awt.event.ActionEvent evt) {
         try {
-            int mm = Integer.parseInt(txtBulan.getText());
             int yy = Integer.parseInt(txtTahun.getText());
+            int mm = Integer.parseInt(txtBulan.getText());
 
             CekHari ch = new CekHari();
-            int jjk_SSRK = ch.countSSRK(yy, mm);
-            int jjk_J = ch.countJumat(yy, mm);
-            int jjk_S = ch.countSabtu(yy, mm);
-
             if (d.validasiTahun(yy)) {
-                int jumlah_jk = jjk_SSRK + jjk_J + jjk_S;
-                txtJumlah.setText(Integer.toString(jumlah_jk));
+                txtJumlah.setText(Integer.toString(ch.count(yy, mm)));
             }
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
@@ -67,9 +63,8 @@ public class MainFrame extends javax.swing.JFrame {
      * @param evt
      */
     public void FilterNolBulan(KeyEvent evt) {
-
-        int bulan = Integer.parseInt(txtBulan.getText());
         try {
+            int bulan = Integer.parseInt(txtBulan.getText());
             d.validasiBulan(bulan);
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
